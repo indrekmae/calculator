@@ -1,4 +1,3 @@
-pool: 'Nortal agents pool'
 # Node.js
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
@@ -7,7 +6,7 @@ pool: 'Nortal agents pool'
 trigger:
 - master
 
-pool:
+pool: 'Nortal agents pool'
   vmImage: ubuntu-latest
 
 steps:
