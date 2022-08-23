@@ -6,7 +6,8 @@
 trigger:
 - master
 
-pool: 'Nortal agents pool'
+pool:
+  name: 'Nortal agents pool'
   vmImage: ubuntu-latest
 
 steps:
