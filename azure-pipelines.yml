@@ -8,8 +8,7 @@ trigger:
 
 pool:
   name: 'Nortal agents pool'
-  demands: docker
-  vmImage: ubuntu-latest
+  #vmImage: ubuntu-latest
 
 steps:
 - task: NodeTool@0
@@ -27,8 +26,8 @@ steps:
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)'
     includeRootFolder: true
-    archiveType: 'tar'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
 - task: PublishPipelineArtifact@1
