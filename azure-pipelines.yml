@@ -23,26 +23,28 @@ steps:
     npm test
   displayName: 'npm install, build and test'
 
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '*.tgz' 
+    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  displayName: 'Copy npm package'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: 'package.json' 
+    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+  displayName: 'Copy package.json'   
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
+    artifactName: calculator
+  displayName: 'Publish npm artifact'
+
 - script: |
     ls -lAh ./
+    echo "-- artifacts --"
+    ls -lAh $(Build.ArtifactStagingDirectory)
   displayName: 'List files'
-
-#- task: CopyFiles@2
-#  inputs:
-#    sourceFolder: '$(Build.SourcesDirectory)'
-#    contents: '*.tgz' 
-#    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-#  displayName: 'Copy npm package'
-
-#- task: CopyFiles@2
-#  inputs:
-#    sourceFolder: '$(Build.SourcesDirectory)'
-#    contents: 'package.json' 
-#    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-#  displayName: 'Copy package.json'   
-
-#- task: PublishPipelineArtifact@1
-#  inputs:
-#    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
-#    artifactName: calculator
-#  displayName: 'Publish npm artifact'
