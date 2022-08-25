@@ -13,7 +13,7 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '14.x'
   displayName: 'Install Node.js'
 
 - script: |
@@ -22,22 +22,26 @@ steps:
     npm test
   displayName: 'npm install, build and test'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '*.tgz' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy npm package'
+- script: |
+    ls -lAh ./
+  displayName: 'List files'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'package.json' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy package.json'   
+#- task: CopyFiles@2
+#  inputs:
+#    sourceFolder: '$(Build.SourcesDirectory)'
+#    contents: '*.tgz' 
+#    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+#  displayName: 'Copy npm package'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
-    artifactName: calculator
-  displayName: 'Publish npm artifact'
+#- task: CopyFiles@2
+#  inputs:
+#    sourceFolder: '$(Build.SourcesDirectory)'
+#    contents: 'package.json' 
+#    targetFolder: $(Build.ArtifactStagingDirectory)/npm
+#  displayName: 'Copy package.json'   
+
+#- task: PublishPipelineArtifact@1
+#  inputs:
+#    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
+#    artifactName: calculator
+#  displayName: 'Publish npm artifact'
