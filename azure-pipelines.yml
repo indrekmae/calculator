@@ -37,8 +37,10 @@ steps:
     publishLocation: 'pipeline'
   displayName: 'Publish artifact'
 
-- script: |
-    ls -lAh ./
-    echo "-- artifacts --"
-    ls -lAh $(Build.ArtifactStagingDirectory)/
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo "$(Build.SourcesDirectory)"
+      echo "-- artifacts --"
+      echo "$(Build.ArtifactStagingDirectory)"
   displayName: 'List files'
