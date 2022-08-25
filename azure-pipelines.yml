@@ -25,7 +25,7 @@ steps:
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)'
-    includeRootFolder: true
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
@@ -40,7 +40,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir /a-D /S /B "$(Build.SourcesDirectory)"
+      dir /a-D "$(Build.SourcesDirectory)"
       echo "-- artifacts --"
-      dir dir /a-D /S /B "$(Build.ArtifactStagingDirectory)"
+      dir dir /a-D "$(Build.ArtifactStagingDirectory)"
   displayName: 'List files'
