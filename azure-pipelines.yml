@@ -40,7 +40,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo "$(Build.SourcesDirectory)"
+      dir /a-D /S /B "$(Build.SourcesDirectory)"
       echo "-- artifacts --"
-      echo "$(Build.ArtifactStagingDirectory)"
+      dir dir /a-D /S /B "$(Build.ArtifactStagingDirectory)"
   displayName: 'List files'
