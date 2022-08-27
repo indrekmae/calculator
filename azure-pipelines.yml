@@ -8,6 +8,7 @@ trigger:
 
 pool:
   name: 'Nortal agents pool'
+  demands: docker
   #vmImage: ubuntu-latest
 
 steps:
@@ -38,6 +39,7 @@ steps:
   displayName: 'Publish artifact'
 
 - task: CmdLine@2
+  enabled: false
   inputs:
     script: |
       dir /a-D "$(Build.SourcesDirectory)"
